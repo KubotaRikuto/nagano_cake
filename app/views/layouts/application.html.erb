@@ -11,6 +11,44 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!-- ヘッダー -->
+    <header>
+      <nav>
+        <span>LOGO</span>
+        <ul>
+          <!-- admin サインイン -->
+          <% if admin_signed_in? %>
+            商品一覧
+            会員一覧
+            注文一覧
+            ジャンル一覧
+            <%= link_to destroy_admin_session_path, method: :delete do %>
+              ログアウト
+            <% end %>
+
+          <!-- customer サインイン -->
+          <!--% elsif customer_sign_in? %>-->
+            <!--マイページ-->
+            <!--商品一覧-->
+            <!--カート-->
+            <!--ログアウト-->
+          <!-- サインアウト -->
+          <% else %>
+            About
+            商品一覧
+            新規登録
+            ログイン
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+    <!-- メイン -->
+    <main>
+      <%= yield %>
+    </main>
+    <!-- フッター -->
+    <footer>
+
+    </footer>
   </body>
 </html>
