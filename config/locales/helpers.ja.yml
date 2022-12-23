@@ -1,0 +1,6 @@
+ja:
+  helpers:
+    label:
+      admin:
+        email: "メールアドレス"
+        password: "パスワード"

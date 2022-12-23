@@ -6,40 +6,64 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/7d4686f8ad.js" crossorigin="anonymous"></script>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <!-- ヘッダー -->
     <header>
-      <nav>
-        <span>LOGO</span>
-        <ul>
-          <!-- admin サインイン -->
-          <% if admin_signed_in? %>
-            商品一覧
-            会員一覧
-            注文一覧
-            ジャンル一覧
-            <%= link_to destroy_admin_session_path, method: :delete do %>
-              ログアウト
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light"> <!-- ここのtext-light はほかのページリンク作成したら消す-->
+        <div class="container">
+            <%= link_to root_path, class: "navbar-brand p-3" do %>
+              <h1><span>LOGO</span></h1>
             <% end %>
+          <ul class="navbar-nav ml-auto">
+              <!-- admin サインイン -->
+              <% if admin_signed_in? %>
+                <li>商品一覧</li>
+                <li>会員一覧</li>
+                <li>注文一覧</li>
+                <li>ジャンル一覧</li>
+                <li>
+                  <%= link_to destroy_admin_session_path, method: :delete do %>
+                    ログアウト
+                  <% end %>
+                </li>
 
-          <!-- customer サインイン -->
-          <!--% elsif customer_sign_in? %>-->
-            <!--マイページ-->
-            <!--商品一覧-->
-            <!--カート-->
-            <!--ログアウト-->
-          <!-- サインアウト -->
-          <% else %>
-            About
-            商品一覧
-            新規登録
-            ログイン
-          <% end %>
-        </ul>
+              <!-- customer サインイン -->
+              <!--% elsif customer_sign_in? %>-->
+                <!--マイページ-->
+                <!--商品一覧-->
+                <!--カート-->
+                <!--ログアウト-->
+              <!-- サインアウト -->
+              <% else %>
+                <li>
+                  <%= link_to about_path, class: 'navbar-link  btn btn-sm btn-outline-light text-light' do %>
+                    About
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to items_path, class: 'navbar-link  btn btn-sm btn-outline-light text-light' do %>
+                    商品一覧
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_customer_registration_path, class: 'navbar-link  btn btn-sm btn-outline-light text-light' do %>
+                    新規登録
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_customer_session_path, class: 'navbar-link  btn btn-sm btn-outline-light text-light' do %>
+                    ログイン
+                  <% end %>
+                </li>
+              <% end %>
+          </ul>
+        </div>
       </nav>
     </header>
     <!-- メイン -->
