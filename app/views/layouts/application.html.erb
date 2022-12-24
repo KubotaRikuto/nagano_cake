@@ -17,18 +17,36 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light"> <!-- ここのtext-light はほかのページリンク作成したら消す-->
         <div class="container">
-            <%= link_to root_path, class: "navbar-brand p-3" do %>
-              <h1><span>LOGO</span></h1>
-            <% end %>
-          <ul class="navbar-nav ml-auto">
+            <div class="row-4 justify-content-start">
+              <%= link_to root_path, class: "navbar-brand p-3" do %>
+                <h1><span>LOGO</span></h1>
+              <% end %>
+            </div>
+          <ul class="navbar-nav ml-auto row-8">
               <!-- admin サインイン -->
               <% if admin_signed_in? %>
-                <li>商品一覧</li>
-                <li>会員一覧</li>
-                <li>注文一覧</li>
-                <li>ジャンル一覧</li>
                 <li>
-                  <%= link_to destroy_admin_session_path, method: :delete do %>
+                  <%= link_to admin_items_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light mr-3 text-light' do %>
+                    商品一覧
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to admin_customers_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light mr-3 text-light' do %>
+                    会員一覧
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to admin_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light mr-3 text-light' do %>
+                    注文一覧
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to admin_genres_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light mr-3 text-light' do%>
+                    ジャンル一覧
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_admin_session_path, method: :delete, class: 'navbar-link navbar-item btn btn-sm btn-outline-light mr-3 text-light' do %>
                     ログアウト
                   <% end %>
                 </li>
@@ -42,22 +60,22 @@
               <!-- サインアウト -->
               <% else %>
                 <li>
-                  <%= link_to about_path, class: 'navbar-link  btn btn-sm btn-outline-light text-light' do %>
+                  <%= link_to about_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light mr-3 text-light' do %>
                     About
                   <% end %>
                 </li>
                 <li>
-                  <%= link_to items_path, class: 'navbar-link  btn btn-sm btn-outline-light text-light' do %>
+                  <%= link_to items_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light mr-3 text-light' do %>
                     商品一覧
                   <% end %>
                 </li>
                 <li>
-                  <%= link_to new_customer_registration_path, class: 'navbar-link  btn btn-sm btn-outline-light text-light' do %>
+                  <%= link_to new_customer_registration_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light mr-3 text-light' do %>
                     新規登録
                   <% end %>
                 </li>
                 <li>
-                  <%= link_to new_customer_session_path, class: 'navbar-link  btn btn-sm btn-outline-light text-light' do %>
+                  <%= link_to new_customer_session_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light mr-3 text-light' do %>
                     ログイン
                   <% end %>
                 </li>
