@@ -1,32 +1,31 @@
 <div class="container bg-dark">
-  <div class="btn btn-sm btn-secondary row my-3 py-0 px-3 text-dark">
-    <h2>管理者ログイン</h2>
+  <div class="btn btn-sm btn-secondary row text-light mt-3 ml-5">
+    <h4 class="my-0 px-3">管理者ログイン</h4>
   </div>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field row bg-success">
+    <div class="form-group row mt-5 bg-success">
       <div class="col-2"></div>
       <div class="col-2">
-        <%= f.label :email %>
+        <%= f.label :email, class: "my-0 align-middle" %>
       </div>
-      <div class="col-4 bg-secondary">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
+
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-4 border border-dark rounded ", id: "exampleFormControlInput1", placeholder: "sample@example.com" %>
+
     </div>
 
-    <div class="field row">
+    <div class="form-group row mt-2">
       <div class="col-2"></div>
       <div class="col-2">
-        <%= f.label :password %>
+        <%= f.label :password, class: "my-0 align-middle" %>
       </div>
-      <div class="col-4">
-        <%= f.password_field :password, autocomplete: "current-password" %>
-      </div>
+        <%= f.password_field :password, autocomplete: "current-password", class: "col-4 border border-dark rounded" %>
+
     </div>
 
-    <div class="actions row">
+    <div class="form-group row mt-4">
       <div class="col-4"></div>
-      <div class="col-4">
-        <%= f.submit "ログイン", class: 'btn btn-sm btn-primary' %>
+      <div class="col-4 px-0">
+        <%= f.submit "ログイン", class: 'btn btn-sm btn-primary px-5' %>
       </div>
     </div>
   <% end %>

@@ -1,7 +1,32 @@
 admin/topページ(注文履歴一覧 #index)
 <div class="container">
-  <h3>商品一覧</h3>
+  <div class="row">
+    <h3 class="col">商品一覧</h3>
+  </div>
+
   <table>
-    
+    <thead>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </thead>
+    <% @items.each do |items| %>
+      <tbody>
+        <tr>
+          <td><%= items.id %></td>
+          <td>
+            <%= link_to admin_item_path(items.id) do %>
+              <%= items.name %>
+            <% end %>
+          </td>
+          <td><%= items.price %></td>
+          <td><%= items.genre_id %></td>
+          <td><%= items.is_active %></td>
+        </tr>
+      </tbody>
+    <% end %>
+
   </table>
 </div>
