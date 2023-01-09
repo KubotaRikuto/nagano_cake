@@ -16,3 +16,9 @@
           waiting_making: "製作待ち"
           making_progress: "製作中"
           completed: "製作完了"
+    activerecord:
+      models:
+        genre:
+      attributes:
+        genre:
+          name: "ジャンル名"

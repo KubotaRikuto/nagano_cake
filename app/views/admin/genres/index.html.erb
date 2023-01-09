@@ -12,7 +12,7 @@ admin/genres/indexページ
   <!-- ジャンル新規登録 -->
   <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
     <div class="row ml-3 mt-3 form-group">
-      <label class="d-flex align-items-center col-2 m-0 genre-name">ジャンル名</label>
+      <%= f.label :name, class: "d-flex align-items-center col-2 m-0" %>
       <%= f.text_field :name, autofocus: true, :placeholder => "ジャンル名", class: "col-2 py-0 form-control name" %>
       <%= f.submit  "新規登録", class: "ml-5 p-0 col-1 btn btn-lg btn-success " %>
     </div>

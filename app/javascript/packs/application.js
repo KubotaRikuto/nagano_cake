@@ -12,7 +12,7 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"
-import "../stylesheets/mystyle.css"
+// import "../stylesheets/mystyle.css"
 
 import '@fortawesome/fontawesome-free/js/all'
 
