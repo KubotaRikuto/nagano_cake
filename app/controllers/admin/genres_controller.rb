@@ -4,7 +4,7 @@ class Admin::GenresController < ApplicationController
     @genre = Genre.new(genre_params)
     if @genre.save
       flash[:notice] = "Genre was successfully created."
-      redirect_to edit_admin_genre_path(@genre.id)
+      redirect_to admin_genres_path
     else
       flash[:notice] = "Genre was false created."
       @genres = Genre.all

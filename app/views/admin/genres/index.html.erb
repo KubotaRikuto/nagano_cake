@@ -4,7 +4,7 @@ admin/genres/indexページ
   <!--フラッシュメッセージ実装-->
   <p id="notice"><%= flash[:notice] %></p>
   <div class="row ">
-    <div class="offset-1"><h4>ジャンル一覧・追加</h4></div>
+    <div class="offset-1"><h5>ジャンル一覧・追加</h5></div>
 
   </div>
 
@@ -12,14 +12,17 @@ admin/genres/indexページ
   <!-- ジャンル新規登録 -->
   <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
     <div class="row ml-3 mt-3 form-group">
-      <%= f.label :name, class: "d-flex align-items-center col-2 m-0" %>
-      <%= f.text_field :name, autofocus: true, :placeholder => "ジャンル名", class: "col-2 py-0 form-control name" %>
-      <%= f.submit  "新規登録", class: "ml-5 p-0 col-1 btn btn-lg btn-success " %>
+      <div class="form-inline ml-4">
+        <%= f.label :name, class: "d-flex align-items-center mr-4" %>
+        <%= f.text_field :name, autofocus: true, :placeholder => "ジャンル名", class: "py-0 ml-0 border border-dark" %>
+        <%= f.submit  "新規登録", class: "ml-5 px-4 btn btn-success"%>
+      </div>
     </div>
   <% end %>
 
   <!-- ジャンル一覧 -->
   <div class="row ml-3">
+    <div class="col-3 mx-2 bg-light">
     <table>
       <thead>
         <th class="">ジャンル</th>
@@ -38,5 +41,6 @@ admin/genres/indexページ
         </tbody>
       <% end %>
     </table>
+    </div>
   </div>
 </div>
