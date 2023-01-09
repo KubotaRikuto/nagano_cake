@@ -1,33 +1,42 @@
 admin/genres/indexページ
 <div class="container-fluid bg-secondary">
+
   <!--フラッシュメッセージ実装-->
   <p id="notice"><%= flash[:notice] %></p>
-  <h3>ジャンル一覧・追加</h3>
+  <div class="row ">
+    <div class="offset-1"><h4>ジャンル一覧・追加</h4></div>
+
+  </div>
+
+
   <!-- ジャンル新規登録 -->
   <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
-    <div class="form-group">
-      <label class="genre-name">ジャンル名</label>
-      <%= f.text_field :name, autofocus: true, class: "form-control name" %>
-      <%= f.submit  "新規登録", class: "btn btn-lg btn-success" %>
+    <div class="row ml-3 mt-3 form-group">
+      <label class="d-flex align-items-center col-2 m-0 genre-name">ジャンル名</label>
+      <%= f.text_field :name, autofocus: true, :placeholder => "ジャンル名", class: "col-2 py-0 form-control name" %>
+      <%= f.submit  "新規登録", class: "ml-5 p-0 col-1 btn btn-lg btn-success " %>
     </div>
   <% end %>
+
   <!-- ジャンル一覧 -->
-  <table>
-    <thead>
-      <th>ジャンル</th>
-      <th colspan="3"></th>
-    </thead>
-    <% @genres.each do |genres| %>
-      <tbody>
-        <th>
-          <%= genres.name %>
-        </th>
-        <th>
-          <%= link_to edit_admin_genre_path(genres.id), class: "btn btn-sm btn-success" do %>
-            編集する
-          <% end %>
-        </th>
-      </tbody>
-    <% end %>
-  </table>
+  <div class="row ml-3">
+    <table>
+      <thead>
+        <th class="">ジャンル</th>
+        <th colspan="3"></th>
+      </thead>
+      <% @genres.each do |genres| %>
+        <tbody>
+          <th>
+            <%= genres.name %>
+          </th>
+          <th>
+            <%= link_to edit_admin_genre_path(genres.id), class: "btn btn-sm btn-success" do %>
+              編集する
+            <% end %>
+          </th>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
 </div>

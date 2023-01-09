@@ -1,1 +1,17 @@
 admin/genres/editページ
+<div class="container">
+  <div class="row">
+    <div class="offset-1 col-2 text-center bg-secondary ">
+      <h4 class="mb-0">ジャンル編集</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 form-group bg-secondary">
+      <%= form_with mode: @genre do |f| %>
+        <div class="offet-1 col-3">ジャンル名</div>
+        <div class="col-4"><%= f.text_field :name, autofocus: true %></div>
+        <div class="col-3 ml-5"><%= f.submit "変更を保存", class: "btn btn-sm btn-success" %></div>
+      <% end %>
+    </div>
+  </div>
+</div>
