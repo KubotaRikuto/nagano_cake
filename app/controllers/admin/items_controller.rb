@@ -2,6 +2,8 @@ class Admin::ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    # genreを追加する
+    @genre = Genre 
   end
 
   def create

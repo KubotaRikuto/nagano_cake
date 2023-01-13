@@ -20,12 +20,13 @@ admin/items/newページ
     <div class="form-group">
       <label for="item_genre">ジャンル</label>
       <!-- ジャンル作成後、form_withにジャンルを追加し、@genreでここに追加 プルダウンのレイアウトも変更-->
-      <select class="form-select" aria-label="Default select example　border border-round">
-        <option selected>-- 選択してください --</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
+
+      <!--<select class="form-select" aria-label="Default select example　border border-round">-->
+      <!--  <option selected>-- 選択してください --</option>-->
+      <!--  <option value="1">One</option>-->
+      <!--  <option value="2">Two</option>-->
+      <!--  <option value="3">Three</option>-->
+      <!--</select>-->
     </div>
     <div class="form-group">
       <label for="item_price">税抜価格</label>
@@ -33,6 +34,10 @@ admin/items/newページ
     </div>
     <div class="form-group">
       <label for="item_is_active">販売ステータス</label>
+      <%= f.radio_button :is_active, true, checked: true %>
+      <%= f.label :is_active, "販売中", value: true %>
+      <%= f.radio_button :is_active, false %>
+      <%= f.label :is_active, "販売停止中", value: false %>
 
     </div>
     <div class="form-group">
