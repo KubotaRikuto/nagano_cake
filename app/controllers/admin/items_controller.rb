@@ -1,15 +1,19 @@
 class Admin::ItemsController < ApplicationController
 
+  before_action :select_genres, only: [ :new, :create, :show, :edit, :update ]
+
   def new
     @item = Item.new
-    # genreを追加する
-    @genre = Genre 
   end
 
   def create
     @item = Item.new(item_params)
     @item.save
     redirect_to admin_item_path(@item.id)
+  end
+
+  def index
+    @items = Item.all
   end
 
   def show
@@ -23,7 +27,7 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     @items.update(item_params)
-    redirect_to 
+    redirect_to
   end
 
   private
@@ -32,5 +36,8 @@ class Admin::ItemsController < ApplicationController
     params.require(:item).permit( :genre_id, :name, :introduction, :price, :is_active [:true, :false] )
   end
 
+  def select_genres
+    @genres = Genre.all
+  end
 
 end

@@ -11,26 +11,19 @@ admin/items/newページ
     </div>
     <div class="form-group">
       <label for="item_name">商品名</label>
-      <%= f.text_field :name, autofocus: true, class: "form-control name" %>
+      <%= f.text_field :name, autofocus: true, placeholder: "商品名", class: "form-control name" %>
     </div>
     <div class="form-group">
       <label for="item_introduction">商品説明</label>
-      <%= f.text_area :introduction, autofocus: true, class: "form-control introduction" %>
+      <%= f.text_area :introduction, autofocus: true, placeholder: "ここに説明文を記述します", class: "form-control introduction" %>
     </div>
     <div class="form-group">
       <label for="item_genre">ジャンル</label>
-      <!-- ジャンル作成後、form_withにジャンルを追加し、@genreでここに追加 プルダウンのレイアウトも変更-->
-
-      <!--<select class="form-select" aria-label="Default select example　border border-round">-->
-      <!--  <option selected>-- 選択してください --</option>-->
-      <!--  <option value="1">One</option>-->
-      <!--  <option value="2">Two</option>-->
-      <!--  <option value="3">Three</option>-->
-      <!--</select>-->
+      <%= f.collection_select :genre_id, @genres, :id, :name, {include_blank: "--選択してください--" } %>
     </div>
     <div class="form-group">
       <label for="item_price">税抜価格</label>
-      <%= f.text_field :price, autofocus: true, class: "form-control price" %>
+      <%= f.text_field :price, autofocus: true, placeholder: "1000", class: "form-control price" %>
     </div>
     <div class="form-group">
       <label for="item_is_active">販売ステータス</label>
