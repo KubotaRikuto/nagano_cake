@@ -1,1 +1,48 @@
-admin/showページ
+admin/items/showページ
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 offset-1 text-center">
+      <h5>商品詳細</h5>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-3 offset-1">
+      <%= image_tag @item.get_item_image(150,200) %>
+    </div>
+
+    <div class="col-5">
+      <table>
+        <thead>
+          <th style="width: 30%" ></th>
+          <th style="width: 70%"></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>商品名</td>
+            <td><%= @item.name %></td>
+          </tr>
+          <tr>
+            <td class="align-top">商品説明</td>
+            <td><%= @item.introduction %></td>
+          </tr>
+          <tr>
+            <td>ジャンル</td>
+            <td><%= @item.genre.name %></td>
+          </tr>
+          <tr>
+            <td>税込価格<br>(税抜価格)</td>
+            <td><%= @item_tax.floor.to_s(:delimited) %>(<%= @item.price.to_s(:delimited) %>)円</td>
+          </tr>
+          <tr>
+            <td>販売ステータス</td>
+            <td>
+              <strong class="align-moddle text-success"><%= @item.is_active ? "販売中" : "販売停止中" %></strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to "編集する",edit_admin_item_path(@item.id), class: "offset-3 mt-3 py-2 px-4 btn btn-success" %>
+    </div>
+
+  </div>
+</div>

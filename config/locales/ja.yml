@@ -22,3 +22,11 @@
       attributes:
         genre:
           name: "ジャンル名"
+      models:
+        item:
+      attributes:
+        item:
+          name: "商品名"
+          introduction: "商品説明"
+          price: "税抜価格"
+          is_active: "販売ステータス"

@@ -1,1 +1,54 @@
-admin/editページ
+admin/items/editページ
+<div class="container">
+  <div class="row">
+    <div class="offset-2">
+      <h5>商品編集</h5>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-8 offset-2">
+      <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch, class: "form-group" do |f| %>
+        <table>
+          <thead>
+            <th style="width: 30%"></th>
+            <th style="width: 70%"></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>商品画像</td>
+              <td><%= f.file_field :item_image, placeholder: "ファイルを選択", accept: "image/*", class: "form-container-file" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :name,class: "mb-0" %></td>
+              <td><%= f.text_field :name, autofocus: true, placeholder: "商品名", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td class="align-top"><%= f.label :introduction, class: "mb-0" %></td>
+              <td><%= f.text_area :introduction, autofocus: true, placeholder: "ここに説明文を記述します", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td>ジャンル</td>
+              <td><%= f.collection_select :genre_id, @genres, :id, :name, {include_blank: "--選択してください--" } %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :price, class: "mb-0" %></td>
+              <td class="form-inline"><%= f.text_field :price, autofocus: true, placeholder: "1000", class: "form-control" %>円</td>
+            </tr>
+            <tr>
+              <td><%= f.label :is_active, class: "mb-0" %></td>
+              <td>
+                <%= f.radio_button :is_active, true %>
+                <%= f.label :is_active, "販売中", value: true, class: "mr-3 mb-0 border-bottom" %>
+                <%= f.radio_button :is_active, false %>
+                <%= f.label :is_active, "販売停止中", value: false, class: "mb-0 border-bottom" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="form-group mt-4">
+          <%= f.submit "変更を保存", class: "offset-4 py-2 px-4 btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
