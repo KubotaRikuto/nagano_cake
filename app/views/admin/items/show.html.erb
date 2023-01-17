@@ -1,13 +1,13 @@
 admin/items/showページ
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-2 offset-1 text-center">
       <h5>商品詳細</h5>
     </div>
   </div>
   <div class="row mt-5">
-    <div class="col-3 offset-1">
-      <%= image_tag @item.get_item_image(150,200) %>
+    <div class="col-2 offset-2">
+      <%= image_tag @item.get_item_image(150,200), class: "d-block ml-auto" %>
     </div>
 
     <div class="col-5">

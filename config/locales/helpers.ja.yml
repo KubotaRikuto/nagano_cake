@@ -4,3 +4,13 @@ ja:
       admin:
         email: "メールアドレス"
         password: "パスワード"
+      customer:
+        name: "名前"
+        name_kana: "フリガナ"
+        email: "メールアドレス"
+        postal_code: "郵便番号(ハイフンなし)"
+        address: "住所"
+        telephone_number: "電話番号(ハイフンなし)"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+
