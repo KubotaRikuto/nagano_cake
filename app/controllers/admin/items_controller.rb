@@ -1,5 +1,6 @@
 class Admin::ItemsController < ApplicationController
-
+  #ログインしていない状態で管理者ページにアクセスすると、ログイン画面へリダイレクト(adminは例外なし)
+  before_action :authenticate_admin!
   before_action :select_genres, only: [ :new, :create, :show, :edit, :update ]
 
   def new

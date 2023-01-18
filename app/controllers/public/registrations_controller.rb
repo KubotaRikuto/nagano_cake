@@ -1,16 +1,12 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
-  before_action :authenticate_customer!, except: [:top]
-  before_action :configure_sign_up_params, only: [:create] # ログイン機能
-  # before_action :configure_account_update_params, only: [:update] # 編集機能
+  before_action :configure_sign_up_params, only: [:create] # 新規登録機能
+  before_action :configure_account_update_params, only: [:update] # 編集機能
 
-  def after_sign_in_path_for(resource)
+  # 新規登録後のリダイレクト先
+  def after_sign_up_path_for(resource)
     items_path
-  end
-
-  def after_sign_out_path_for(resource)
-    root_path
   end
 
   # GET /resource/sign_up
@@ -52,13 +48,14 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   # ログイン機能
   def configure_sign_up_params
-   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  # ユーザー情報更新
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number])
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)

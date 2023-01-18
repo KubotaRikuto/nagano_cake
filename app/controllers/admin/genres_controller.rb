@@ -1,4 +1,6 @@
 class Admin::GenresController < ApplicationController
+  #ログインしていない状態で管理者ページにアクセスすると、ログイン画面へリダイレクト(adminは例外なし)
+  before_action :authenticate_admin!
 
   def create
     @genre = Genre.new(genre_params)
