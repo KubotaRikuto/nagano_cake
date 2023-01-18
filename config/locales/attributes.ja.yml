@@ -1,6 +1,6 @@
 ja:
-  helpers:
-    label:
+  activerecord:
+    attributes:
       admin:
         email: "メールアドレス"
         password: "パスワード"
@@ -13,4 +13,3 @@ ja:
         telephone_number: "電話番号(ハイフンなし)"
         password: "パスワード"
         password_confirmation: "パスワード(確認用)"
-
