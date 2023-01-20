@@ -14,6 +14,7 @@ class Admin::CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
+    @customer_name = @customer.last_name + @customer.first_name
   end
 
   def update
@@ -22,7 +23,7 @@ class Admin::CustomersController < ApplicationController
       flash[:notice] = "You have updated customer successfully."
       redirect_to admin_customer_path(@customer.id)
     else
-      render :edit
+      render edit_admin_customer_path(@customer.id)
     end
   end
 

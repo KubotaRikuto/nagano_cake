@@ -11,75 +11,80 @@ admin/customer/editページ
         会員ID
       </div>
       <div class="col">
-        <%= f.id %>
+        <%= @customer.id %>
       </div>
     </div>
-  
+
     <div class="form-group row">
       <div class="col-2">
         氏名
       </div>
-      <div class="col">
-        <%= f.text_field :last_name, autofocus: true, %>
-      </div>
+      <!--<div class="col">-->
+      <%= f.text_field :last_name, autofocus: true, class: "col-2 pl-1" %>
+      <%= f.text_field :first_name, autofocus: true, class: "col-2 ml-5 pl-1" %>
+      <!--</div>-->
     </div>
-  
+
     <div class="form-group row">
       <div class="col-2">
         フリガナ
       </div>
-      <div class="col">
-        <%= @customer.last_name_kana %>　<%= @customer.first_name_kana %>
-      </div>
+      <!--<div class="col">-->
+      <%= f.text_field :last_name_kana, autofocus: true, class: "col-2 pl-1" %>
+      <%= f.text_field :first_name_kana, autofocus: true, class: "col-2 ml-5 pl-1" %>
+      <!--</div>-->
     </div>
-  
+
     <div class="form-group row">
       <div class="col-2">
         郵便番号
       </div>
-      <div class="col">
-        <%= @customer.postal_code %>
-      </div>
+      <!--<div class="col">-->
+      <%= f.text_field :postal_code, autofocus: true, class: "col-2 pl-1" %>
+      <!--</div>-->
     </div>
-  
+
     <div class="form-group row">
       <div class="col-2">
         住所
       </div>
-      <div class="col">
-        <%= @customer.address %>
-      </div>
+      <!--<div class="col">-->
+      <%= f.text_field :address, autofocus: true, class: "col-6 pl-1" %>
+      <!--</div>-->
     </div>
-  
+
     <div class="form-group row">
       <div class="col-2">
         電話番号
       </div>
-      <div class="col">
-        <%= @customer.telephone_number %>
-      </div>
+      <!--<div class="col">-->
+      <%= f.text_field :telephone_number, autofocus: true, class: "col-2 pl-1" %>
+      <!--</div>-->
     </div>
-  
+
     <div class="form-group row">
       <div class="col-2">
         メールアドレス
       </div>
-      <div class="col">
-        <%= @customer.email %>
-      </div>
+      <!--<div class="col">-->
+      <%= f.text_field :email, autofocus: true, class: "col-2 pl-1" %>
+      <!--</div>-->
     </div>
-  
+
     <div class="form-group row">
       <div class="col-2">
         会員ステータス
       </div>
-      <div class="col">
-        <%= @customer.is_deleted ? "退会" : "有効" %>
+      <div class="col pl-0">
+        <%= f.radio_button :is_deleted, false %>
+        <%= f.label :is_deleted, "有効", value: false, class: "mr-3 mb-0 border-bottom" %>
+        <%= f.radio_button :is_deleted, true %>
+        <%= f.label :is_deleted, "退会", value: true, class: "mb-0 border-bottom" %>
       </div>
     </div>
-    <div class="form-group row">
-      <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "offset-2 col-1 btn btn-success" %>
-      <%= link_to "注文一覧を見る", admin_path, class: "offset-1 px-3 btn btn-primary" %>
+
+    <div class="form-group row mt-5">
+      <%= f.submit "変更を保存", class: "offset-2 px-4 btn btn-success" %>
     </div>
   <% end %>
 </div>
