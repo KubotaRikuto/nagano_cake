@@ -1,1 +1,34 @@
 public/showページ
+<div class="container-fluid">
+  <div class="row mx-3 mt-5">
+    <div class="col-2 bg-secondary">
+      <p>ジャンル検索</p>
+    </div>
+    <!--商品詳細-->
+    <div class="col-9 mx-3 bg-secondary">
+      <div class="row mt-3">
+        <!--商品画像-->
+        <div class="col-4 bg-light">
+          <%= image_tag @item.get_item_image(256,144), class: "d-block mx-auto" %>
+        </div>
+        <!--商品説明-->
+        <div class="col-7 ml-3">
+          <div class="row">
+            <h2><%= @item.name %></h2>
+          </div>
+          <div class="row">
+            <p><%= @item.introduction%></p>
+          </div>
+          <div class="row">
+            <h4><strong>¥<%= @item_tax.floor.to_s(:delimited) %></strong></h4>
+            <p>(税込)</p><!--税込は下付き文字-->
+          </div>
+          <div class="row">
+            <!--個数選択-->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
