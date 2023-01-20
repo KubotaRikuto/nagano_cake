@@ -8,8 +8,8 @@ admin/genres/editページ
   <div class="row mt-5 ">
     <div class="form-inline">
       <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch, class:"form-group" do |f| %>
-        <%= f.label :name, class: "mx-5" %>
-        <%= f.text_field :name, autofocus: true, placeholder: "ジャンル名" class:"border border-dark mr-5" %>
+        <div class="mx-5 my-auto"><p class="mb-0">ジャンル名</p></div>
+        <%= f.text_field :name, autofocus: true, placeholder: "ジャンル名", class:"border border-dark mr-5" %>
         <%= f.submit "変更を保存", class: "btn btn-sm rounded-3 py-1 px-3 btn-success" %>
       <% end %>
     </div>

@@ -3,10 +3,7 @@
 class Public::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
 
-  def after_sign_in_path_for(resource)
-    items_path
-  end
-  # sign_out後はhomeに遷移するので、デフォルト設定
+
 
   # # GET /resource/sign_in
   # def new
@@ -30,4 +27,9 @@ class Public::SessionsController < Devise::SessionsController
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   end
+
+  def after_sign_in_path_for(resource)
+    items_path
+  end
+  # sign_out後はhomeに遷移するので、デフォルト設定
 end

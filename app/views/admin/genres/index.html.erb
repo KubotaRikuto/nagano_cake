@@ -1,8 +1,5 @@
 admin/genres/indexページ
 <div class="container-fluid">
-
-  <!--フラッシュメッセージ実装-->
-  <p id="notice"><%= flash[:notice] %></p>
   <div class="row ml-3">
     <div class="ml-5"><h5 class="px-4 table-secondary">ジャンル一覧・追加</h5></div>
   </div>
@@ -10,38 +7,34 @@ admin/genres/indexページ
 
   <!-- ジャンル新規登録 -->
   <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
-    <div class="row ml-3 mt-3">
-      <div class="col-10">
-      <div class="form-inline form-group">
-        <div class="col-1 pl-0">
-          <label>ジャンル名</label>
-        </div>
-        <div class="col-2">
-          <%= f.text_field :name, autofocus: true, :placeholder => "ジャンル名", class: "p-0 border border-dark" %>
-        </div>
-        <div class="col-1">
-          <%= f.submit  "新規登録", class: " px-4 btn btn-success"%>
-        </div>
+    <div class="row mt-3 ml-3 form-inline form-group">
+      <div class="col-1 pl-0">
+        <label>ジャンル名</label>
       </div>
-      </div>
+      <!--<div class="col-2">-->
+        <%= f.text_field :name, autofocus: true, :placeholder => "ジャンル名", class: "p-0 col-2 border border-dark" %>
+      <!--</div>-->
+      <!--<div class="col-1">-->
+        <%= f.submit  "新規登録", class: "col-1 ml-5 px-4 btn btn-success"%>
+      <!--</div>-->
     </div>
   <% end %>
 
   <!-- ジャンル一覧 -->
   <div class="row mt-4 ml-3">
-    <div class="col-10 px-0">
-      <div class="col-3 px-0">
-        <table class="table table-sm">
+    <div class="col-3 px-0">
+      <!--<div class="col-3 px-0">-->
+        <table class="table table-sm border-top border-bottom borborder-secondary">
           <thead class="table-secondary">
-            <th style="width: 60%" class="text-center">ジャンル</th>
-            <th style="width: 40%"></th>
+            <th style="width: 50%" class="text-center">ジャンル</th>
+            <th style="width: 50%"></th>
           </thead>
           <% @genres.each do |genres| %>
             <tbody>
               <th>
                 <%= genres.name %>
               </th>
-              <th>
+              <th class="text-center">
                 <%= link_to edit_admin_genre_path(genres.id), class: "btn btn-sm btn-success" do %>
                   編集する
                 <% end %>
@@ -49,7 +42,7 @@ admin/genres/indexページ
             </tbody>
           <% end %>
         </table>
-      </div>
+      <!--</div>-->
     </div>
   </div>
 </div>

@@ -5,10 +5,15 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # validates :last_name_kana, presence: true, format: { with: /\A[\p{katakana}\u{30fc}]+\z/, message: 'カタカナで入力して下さい。'}
-
+  validates :email, uniqueness: true
+  validates :my_page, uniqueness: true
 
   has_many :addresses, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :cart_items, dependent: :destroy
+
+  # def to_param
+  #   my_page
+  # end
 
 end

@@ -1,1 +1,37 @@
 admin/customer/indexページ
+<div class="container">
+  <div class="row mt-5">
+    <div class="offset-1">
+      <h5><span class="px-3 bg-secondary">会員一覧</span></h5>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="offset-2 col-8">
+      <table class="table table-sm table-borderless border-top border-bottom borborder-secondary">
+        <thead class="table-secondary ">
+          <tr>
+            <th style="width: 10%">会員ID</th>
+            <th style="width: 30%">氏名</th>
+            <th style="width: 40%">メールアドレス</th>
+            <th style="width: 20%">ステータス</th>
+          </tr>
+        </thead>
+        <% @customers.each do |customers| %>
+          <tbody>
+            <tr>
+              <td><%= customers.id %></td>
+              <td>
+                <%= link_to admin_customer_path(customers.id), class: "text-dark" do%>
+                  <%= customers.last_name %><%= customers.first_name %>
+                <% end %>
+              </td>
+              <td><%= customers.email %></td>
+              <td><%= customers.is_deleted ? "退会" : "有効" %></td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+      <%= paginate @customers %>
+    </div>
+  </div>
+</div>

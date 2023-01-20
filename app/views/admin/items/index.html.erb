@@ -14,24 +14,28 @@ admin/items/indexページ
     <div class="col-12">
       <table class="table table-sm table-borderless border-top border-bottom borborder-secondary">
         <thead class="table-secondary ">
-          <th style="width: 10%">商品ID</th>
-          <th style="width: 30%">商品名</th>
-          <th style="width: 10%">税抜価格</th>
-          <th style="width: 30%">ジャンル</th>
-          <th style="width: 20%">ステータス</th>
+          <tr>
+            <th style="width: 10%">商品ID</th>
+            <th style="width: 30%">商品名</th>
+            <th style="width: 10%">税抜価格</th>
+            <th style="width: 30%">ジャンル</th>
+            <th style="width: 20%">ステータス</th>
+          </tr>
         </thead>
         <% @items.each do |items| %>
-        <tbody class="">
-          <th><%= items.id %></th>
-          <th>
-            <%= link_to admin_item_path(items.id), class: "text-dark" do %>
-              <%= items.name %>
-            <% end %>
-          </th>
-          <th><%= items.price.to_s(:delimited) %></th>
-          <th><%= items.genre.name %></th>
-          <th><%= items.is_active ? "販売中" : "販売停止中" %></th>
-        </tbody>
+          <tbody class="">
+            <tr>
+              <td><%= items.id %></td>
+              <td>
+                <%= link_to admin_item_path(items.id), class: "text-dark" do %>
+                  <%= items.name %>
+                <% end %>
+              </td>
+              <td><%= items.price.to_s(:delimited) %></td>
+              <td><%= items.genre.name %></td>
+              <td><%= items.is_active ? "販売中" : "販売停止中" %></td>
+            </tr>
+          </tbody>
         <% end %>
       </table>
       <%= paginate @items %>

@@ -18,11 +18,6 @@
           completed: "製作完了"
     activerecord:
       models:
-        genre:
-      attributes:
-        genre:
-          name: "ジャンル名"
-      models:
         item:
       attributes:
         item:
@@ -30,6 +25,3 @@
           introduction: "商品説明"
           price: "税抜価格"
           is_active: "販売ステータス"
-    devise:
-      shared:
-        minimum_password_length: "（%{count}字以上）"

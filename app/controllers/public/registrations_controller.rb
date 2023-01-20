@@ -2,12 +2,7 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create] # 新規登録機能
-  before_action :configure_account_update_params, only: [:update] # 編集機能
-
-  # 新規登録後のリダイレクト先
-  def after_sign_up_path_for(resource)
-    items_path
-  end
+  # before_action :configure_account_update_params, only: [:update] # 編集機能
 
   # GET /resource/sign_up
   def new
@@ -52,15 +47,17 @@ class Public::RegistrationsController < Devise::RegistrationsController
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # ユーザー情報更新
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number])
-  end
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
+  # ユーザー情報更新(今回は使用しない)
+  # def configure_account_update_params
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number])
   # end
+
+  # 新規登録後のリダイレクト先
+  # The path used after sign up.
+  def after_sign_up_path_for(resource)
+    # super(resource)
+    items_path
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

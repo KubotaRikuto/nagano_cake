@@ -25,7 +25,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <div class="navbar mr-auto"> フラッシュメッセージ欄 </div>
+            <div class="navbar mr-auto"> <p id="notice"><%= flash[:notice] %></p> </div>
             <ul class="navbar-nav">
               <!-- admin サインイン -->
               <% if admin_signed_in? %>
@@ -57,7 +57,7 @@
 
               <!-- customer サインイン -->
               <% elsif customer_signed_in? %>
-                <%= link_to about_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
+                <%= link_to customers_my_page_path(current_customer.id), class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
                   マイページ
                 <% end %>
                 <%= link_to items_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>

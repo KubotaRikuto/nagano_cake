@@ -1,1 +1,46 @@
 public/customer/show
+<div class="container-fulled">
+  <div class="row mt-5">
+    <div class="offset-1">
+      <h5><span class="px-3 bg-secondary">マイページ</span></h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-1">
+      <strong><p>登録情報</p></strong>
+    </div>
+    <div class="col-1">
+      <%= link_to customers_infomation_edit_path(@customer.id), class:"btn" %>
+    </div>
+  </div>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>氏名</td>
+        <td><%= @customer.last_name %> <%= @customer.first_name %></td>
+      </tr>
+      <tr>
+        <td>カナ</td>
+        <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+      </tr>
+      <tr>
+        <td><%= @customer.label :postal_code %></td>
+        <td><%= @customer.postal_code %></td>
+      </tr>
+      <tr>
+        <td><%= @customer.label :address %></td>
+        <td><%= @customer.address %></td>
+      </tr>
+      <tr>
+        <td><%= @customer.label :telephone_number %></td>
+        <td><%= @customer.telephone_number %></td>
+      </tr>
+      <tr>
+        <td><%= @customer.label :email %></td>
+        <td><%= @customer.email %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
