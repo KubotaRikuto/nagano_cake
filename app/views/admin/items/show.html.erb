@@ -31,7 +31,7 @@ admin/items/showページ
           </tr>
           <tr>
             <td>税込価格<br>(税抜価格)</td>
-            <td><%= @item_tax.floor.to_s(:delimited) %>(<%= @item.price.to_s(:delimited) %>)円</td>
+            <td><%= @item.with_tax_price.to_s(:delimited) %>(<%= @item.price.to_s(:delimited) %>)円</td>
           </tr>
           <tr>
             <td>販売ステータス</td>

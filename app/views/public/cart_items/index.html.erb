@@ -1,0 +1,49 @@
+public/cart_item/index
+<div class="container">
+  <div class="row mx-3">
+    <div class="col-2 bg-secondary">
+      <p>ショッピングカート</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-9 mx-3 bg-secondary">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 10%">商品名</th>
+              <th style="width: 10%">単価(税込)</th>
+              <th style="width: 10%">数量</th>
+              <th style="width: 10%">小計</th>
+              <th style="width: 10%"></th>
+            </tr>
+          </thead>
+          <% @cart_items.each do |cart_item| %>
+            <tbody>
+              <tr>
+                <td><%= cart_item.item.name %></td>
+                <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+                <td>
+                  <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
+                    <%= f.select :amount, *[1..10], autofocus: true, include_blank: "個数選択" %>
+                    <%= f.submit "変更", class: "btn btn-success" %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= cart_item.subtotal.to_s(:delimited) %>
+                </td>
+                <td>
+                  <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %>
+                </td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+
+    </div>
+  </div>
+  <!--↓買い物を続けると小計-->
+  <div class="row">
+
+  </div>
+</div>

@@ -12,6 +12,11 @@ class Item < ApplicationRecord
 
   has_one_attached :item_image
 
+  # 消費税メソッド
+  def with_tax_price
+    (price * 1.1).floor
+  end
+
   def get_item_image(width, height)
     unless item_image.attached?
       file_path = Rails.root.join('app/assets/images/no-image.jpg')

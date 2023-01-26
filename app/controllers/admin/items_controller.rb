@@ -23,8 +23,6 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item_tax = @item.price*1.1
-
   end
 
   def edit

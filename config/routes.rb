@@ -16,10 +16,10 @@ Rails.application.routes.draw do
   namespace :admin do
     # top
     get '/' => 'homes#top'
-    resources :items, except: [ :destroy ]
-    resources :genres, only: [ :create, :index, :edit, :update ]
-    resources :customers, only: [ :index, :show, :edit, :update ]
-    resources :orders, only: [ :show, :update ]
+    resources :items, except: [:destroy ]
+    resources :genres, only: [:create, :index, :edit, :update ]
+    resources :customers, only: [:index, :show, :edit, :update ]
+    resources :orders, only: [:show, :update ]
   end
 
   # 顧客用
@@ -32,8 +32,11 @@ Rails.application.routes.draw do
     get "customers/unsubscribe" => 'customers#unsubscribe'
     patch "customers/withdrawl" => 'customers#withdrawl'
 
-    resources :items, only: [ :index, :show ]
+    get "cart_items/destroy_all" => 'cart_items#destroy_all'
+
+    resources :items, only: [:index, :show ]
     resources :addresses, only: [:index, :create, :edit, :update, :destroy ]
+    resources :cart_items, only: [:index, :create, :update, :destroy ]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

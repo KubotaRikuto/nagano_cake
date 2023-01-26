@@ -20,11 +20,16 @@ public/showページ
             <p><%= @item.introduction%></p>
           </div>
           <div class="row">
-            <h4><strong>¥<%= @item_tax.floor.to_s(:delimited) %></strong></h4>
+            <h4><strong>¥<%= @item.with_tax_price.to_s(:delimited) %></strong></h4>
             <p>(税込)</p><!--税込は下付き文字-->
           </div>
           <div class="row">
-            <!--個数選択-->
+             <%= form_with model: @cart_item , url: cart_items_path, method: :post do |f| %>
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <!--個数選択-->
+              <%= f.select :amount, *[1..3], autofocus: true, include_blank: "個数選択"  %>
+              <%= f.submit "カートに入れる", class: "" %>
+            <% end %>
           </div>
         </div>
 
