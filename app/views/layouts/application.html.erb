@@ -68,7 +68,7 @@
 
                   <!-- customer サインイン -->
                   <% elsif customer_signed_in? %>
-                    <%= link_to customers_my_page_path(current_customer.id), class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
+                    <%= link_to customers_my_page_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
                       マイページ
                     <% end %>
                     <%= link_to items_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>

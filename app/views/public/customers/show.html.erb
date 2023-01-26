@@ -10,9 +10,7 @@ public/customer/show
     <div class="col-1">
       <strong><p>登録情報</p></strong>
     </div>
-    <div class="col-1">
-      <%= link_to customers_infomation_edit_path(@customer.id), class:"btn" %>
-    </div>
+    <%= link_to "編集する", customers_infomation_edit_path, class:"col-1 btn btn-sm btn-success" %>
   </div>
 
   <table>
@@ -26,19 +24,19 @@ public/customer/show
         <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
       </tr>
       <tr>
-        <td><%= @customer.label :postal_code %></td>
+        <td>郵便番号</td>
         <td><%= @customer.postal_code %></td>
       </tr>
       <tr>
-        <td><%= @customer.label :address %></td>
+        <td>住所</td>
         <td><%= @customer.address %></td>
       </tr>
       <tr>
-        <td><%= @customer.label :telephone_number %></td>
+        <td>電話番号</td>
         <td><%= @customer.telephone_number %></td>
       </tr>
       <tr>
-        <td><%= @customer.label :email %></td>
+        <td>メールアドレス</td>
         <td><%= @customer.email %></td>
       </tr>
     </tbody>

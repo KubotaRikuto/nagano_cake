@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     get "customers/unsubscribe" => 'customers#unsubscribe'
     patch "customers/withdrawl" => 'customers#withdrawl'
 
-    get "cart_items/destroy_all" => 'cart_items#destroy_all'
+    delete "cart_items/destroy_all" => 'cart_items#destroy_all'
 
     resources :items, only: [:index, :show ]
     resources :addresses, only: [:index, :create, :edit, :update, :destroy ]

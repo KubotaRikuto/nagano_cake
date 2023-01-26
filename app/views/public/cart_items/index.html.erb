@@ -4,7 +4,10 @@ public/cart_item/index
     <div class="col-2 bg-secondary">
       <p>ショッピングカート</p>
     </div>
+    <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "col-2 ml-auto btn btn-sm btn-danger" %>
   </div>
+
+<% @cart_item_price_sum = 0 %>
 
   <div class="row">
     <div class="col-9 mx-3 bg-secondary">
@@ -37,13 +40,22 @@ public/cart_item/index
                 </td>
               </tr>
             </tbody>
-          <% end %>
+   <% end %>
         </table>
 
     </div>
   </div>
   <!--↓買い物を続けると小計-->
   <div class="row">
-
+    <%= link_to "買い物を続ける", root_path, class: "col-1 btn btn-sm btn-primary" %>
+    <!--<table>-->
+    <!--  <tbody>-->
+    <!--    <tr>-->
+    <!--      <td>合計金額</td>-->
+          <!--<td>%= @cart_item_price_sum += cart_item.subtotal %></td>-->
+    <!--    </tr>-->
+    <!--  </tbody>-->
+    <!--</table>-->
   </div>
+
 </div>

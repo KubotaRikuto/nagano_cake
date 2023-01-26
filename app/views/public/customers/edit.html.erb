@@ -1,1 +1,14 @@
 public/customer/edit
+<div class="container">
+  <div class="row mt-5">
+    <div class="offset-1">
+      <h5><span class="px-3 bg-secondary">会員情報編集</span></h5>
+    </div>
+  </div>
+  <%= form_with mldel: @customer, url: customers_infomation_path(@customer.id), method: :patch do |f| %>
+    <div class="row mt-5">
+      <%= f.label :name%>
+    </div>
+  <% end %>
+
+</div>

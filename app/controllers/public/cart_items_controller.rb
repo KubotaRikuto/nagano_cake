@@ -4,22 +4,21 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_customer.cart_items.all
+    # @cart_item_price_sum += @cart_item.subtotal
   end
 
   def create
     # binding.pry
 
     # カートに表示 (商品idから参照)
-    # @item = Item.find(cart_item_params[:item_id]) # 結果同じ？ cart_item_params[:item_id] = item_params[id]
-
     @cart_item = current_customer.cart_items.new(cart_item_params)
-    # @cart_item.customer_id = current_customer.id
     @cart_items = current_customer.cart_items.all
+
     if @cart_items.find_by(item_id: params[:cart_item][:item_id] )
       cart_item = @cart_items.find_by(item_id: params[:cart_item][:item_id] )
-      p cart_item
+      # p cart_item # p ~ :ログ確認の記述
       cart_item.amount += params[:cart_item][:amount].to_i
-      p cart_item
+      # p cart_item
       cart_item.save
       redirect_to cart_items_path
 
@@ -32,15 +31,13 @@ class Public::CartItemsController < ApplicationController
       flash[:notice] = "cart_items was false created."
       render :index
     end
-
-
   end
 
   def update
-    @cart_item = current_customer.cart_items.find(cart_item_params[:item_id])
+    @cart_item = current_customer.cart_items.find(params[:id])
     if @cart_item.update(cart_item_params)
       flash[:notice] = "cart_items was successfully updated."
-      redirect_to :index
+      redirect_to cart_items_path
     else
       @cart_items = current_customer.cart_items.all
       render :index
@@ -54,6 +51,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
+    current_customer.cart_items.destroy_all
+    redirect_to cart_items_path
   end
 
   private
