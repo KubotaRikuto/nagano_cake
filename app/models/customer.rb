@@ -12,8 +12,4 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :cart_items, dependent: :destroy
 
-  # def to_param
-  #   my_page = id
-  # end
-
 end

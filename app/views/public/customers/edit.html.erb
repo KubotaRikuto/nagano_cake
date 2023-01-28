@@ -5,9 +5,36 @@ public/customer/edit
       <h5><span class="px-3 bg-secondary">会員情報編集</span></h5>
     </div>
   </div>
-  <%= form_with mldel: @customer, url: customers_infomation_path(@customer.id), method: :patch do |f| %>
-    <div class="row mt-5">
-      <%= f.label :name%>
+  <%= form_with model: @customer, url: customers_infomation_path, method: :patch do |f| %>
+    <div class="row form-group  form-inline mt-5">
+      <div class="col-2">氏名</div>
+      <%= f.text_field :last_name,autofocus: true, class: "col-2 pl-1 form-control" %>
+      <%= f.text_field :first_name,autofocus: true, class: "col-2 pl-1 form-control" %>
+    </div>
+    <div class="row form-group form-inline">
+      <div class="col-2">フリガナ</div>
+      <%= f.text_field :last_name_kana,autofocus: true, class: "col-2 pl-1 form-control" %>
+      <%= f.text_field :first_name_kana,autofocus: true, class: "col-2 pl-1 form-control" %>
+    </div>
+    <div class="row form-group form-inline">
+      <div class="col-2">郵便番号</div>
+      <%= f.text_field :postal_code,autofocus: true, class: "col-2 pl-1 form-control" %>
+    </div>
+    <div class="row form-group form-inline">
+      <div class="col-2">住所</div>
+      <%= f.text_field :address,autofocus: true, class: "col-2 pl-1 form-control" %>
+    </div>
+    <div class="row form-group form-inline">
+      <div class="col-2">電話番号</div>
+      <%= f.text_field :telephone_number,autofocus: true, class: "col-2 pl-1 form-control" %>
+    </div>
+    <div class="row form-group form-inline">
+      <div class="col-2">メールアドレス</div>
+      <%= f.text_field :email,autofocus: true, class: "col-2 pl-1 form-control" %>
+    </div>
+    <div class="row form-group mt-4">
+      <%= f.submit "変更内容を保存", class: "offset-2 col-2 py-2 px-4 btn btn-success font-weight-bold"%>
+      <%= link_to "退会する", customers_unsubscribe_path, class: "offset-4 py-2 px-4 btn btn-danger font-weight-bold"%>
     </div>
   <% end %>
 

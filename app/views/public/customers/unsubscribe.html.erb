@@ -1,1 +1,18 @@
 public/customer/unsubscribe
+<div class="container">
+  <div class="row mt-5">
+    <h5><span class="font-weight-bold">本当に退会しますか？</span></h5>
+  </div>
+
+  <div class="row mt-4">
+    <p>
+      退会すると、会員登録情報や<br>
+      これまでの購入履歴が閲覧できなくなります。<br>
+      退会する場合は、「退会する」をクリックしてください。
+    </p>
+  </div>
+  <div class="row">
+    <%= link_to "退会しない", customers_my_page_path, class: "offset-4 py-2 px-4 btn btn-primary font-weight-bold"%>
+    <%= link_to "退会する", customers_withdrawl_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "offset-4 py-2 px-4 btn btn-danger font-weight-bold"%>
+  </div>
+</div>

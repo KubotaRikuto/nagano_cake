@@ -16,9 +16,17 @@ class Public::CustomersController < ApplicationController
   end
 
   def unsubscribe
+    @customer = current_customer
   end
 
   def withdrawl
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+
+    #sessionIDのresetを行う
+    reset_session
+    #指定されたrootへのpath
+    redirect_to root_path
   end
 
   private
