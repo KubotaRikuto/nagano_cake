@@ -4,7 +4,6 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_customer.cart_items.all
-    # @cart_item_price_sum += @cart_item.subtotal
   end
 
   def create
@@ -16,7 +15,7 @@ class Public::CartItemsController < ApplicationController
 
     if @cart_items.find_by(item_id: params[:cart_item][:item_id] )
       cart_item = @cart_items.find_by(item_id: params[:cart_item][:item_id] )
-      # p cart_item # p ~ :ログ確認の記述
+      # p cart_item # p ~ :ターミナルログ確認の記述
       cart_item.amount += params[:cart_item][:amount].to_i
       # p cart_item
       cart_item.save

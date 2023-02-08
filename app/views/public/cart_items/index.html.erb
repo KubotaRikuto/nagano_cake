@@ -1,8 +1,8 @@
 public/cart_item/index
 <div class="container">
-  <div class="row mx-3">
-    <div class="col-2 bg-secondary">
-      <p>ショッピングカート</p>
+  <div class="row mx-3 form-inline">
+    <div class="col-3">
+      <h5><span class="px-3 bg-secondary">ショッピングカート</span></h5>
     </div>
     <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "col-2 ml-auto btn btn-sm btn-danger" %>
   </div>
@@ -10,52 +10,61 @@ public/cart_item/index
 <% @cart_item_price_sum = 0 %>
 
   <div class="row">
-    <div class="col-9 mx-3 bg-secondary">
-        <table>
-          <thead>
+    <div class="col-12 mx-3">
+      <table class="table table-sm border-top border-bottom borborder-secondary">
+        <thead>
+          <tr>
+            <th style="width: 40%">商品名</th>
+            <th style="width: 15%">単価(税込)</th>
+            <th style="width: 15%">数量</th>
+            <th style="width: 15%">小計</th>
+            <th style="width: 15%"></th>
+          </tr>
+        </thead>
+        <% @cart_items.each do |cart_item| %>
+          <tbody>
             <tr>
-              <th style="width: 10%">商品名</th>
-              <th style="width: 10%">単価(税込)</th>
-              <th style="width: 10%">数量</th>
-              <th style="width: 10%">小計</th>
-              <th style="width: 10%"></th>
+              <td>
+                <%= image_tag cart_item.item.get_item_image(70,40) %>
+                <%= cart_item.item.name %>
+              </td>
+              <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+              <td>
+                <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
+                  <%= f.select :amount, *[1..10], autofocus: true, include_blank: "個数選択" %>
+                  <%= f.submit "変更", class: "btn btn-success" %>
+                <% end %>
+              </td>
+              <td>
+                <%= cart_item.subtotal.to_s(:delimited) %>
+              </td>
+              <td>
+                <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %>
+              </td>
             </tr>
-          </thead>
-          <% @cart_items.each do |cart_item| %>
-            <tbody>
-              <tr>
-                <td><%= cart_item.item.name %></td>
-                <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
-                <td>
-                  <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
-                    <%= f.select :amount, *[1..10], autofocus: true, include_blank: "個数選択" %>
-                    <%= f.submit "変更", class: "btn btn-success" %>
-                  <% end %>
-                </td>
-                <td>
-                  <%= cart_item.subtotal.to_s(:delimited) %>
-                </td>
-                <td>
-                  <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %>
-                </td>
-              </tr>
-            </tbody>
-   <% end %>
-        </table>
-
+          </tbody>
+          <% @cart_item_price_sum += cart_item.subtotal %>
+        <% end %>
+      </table>
     </div>
   </div>
-  <!--↓買い物を続けると小計-->
+
+  <div class="row form-inline">
+    <%= link_to "買い物を続ける", root_path, class: "col-2 btn btn-sm btn-primary" %>
+    <table class="col-4 my-auto ml-auto table table-sm border-top border-bottom borborder-secondary">
+      <tbody>
+        <tr>
+          <th>合計金額</th>
+          <td>
+            <%= @cart_item_price_sum.to_s(:delimited) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <div class="row">
-    <%= link_to "買い物を続ける", root_path, class: "col-1 btn btn-sm btn-primary" %>
-    <!--<table>-->
-    <!--  <tbody>-->
-    <!--    <tr>-->
-    <!--      <td>合計金額</td>-->
-          <!--<td>%= @cart_item_price_sum += cart_item.subtotal %></td>-->
-    <!--    </tr>-->
-    <!--  </tbody>-->
-    <!--</table>-->
+    <%= link_to "情報入力に進む", new_order_path, class: "py-2 px-4 btn btn-sm btn-success font-weight-bold" %>
   </div>
 
 </div>
