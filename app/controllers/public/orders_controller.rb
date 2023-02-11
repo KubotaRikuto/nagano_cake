@@ -8,20 +8,22 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    # ご自身の住所
     if params[:order][:select_address] == "0"
       @order = Order.new(order_params)
       @order.shipping_postal_code = current_customer.postal_code
       @order.shipping_address = current_customer.address
       @order.shipping_name = current_customer.first_name + current_customer.last_name
+    # 登録済住所から選択
     elsif params[:order][:select_address] == "1"
       @order = Order.new(order_params)
       @address = Address.find(params[:order][:address_id])
       @order.shipping_postal_code = @address.postal_code
       @order.shipping_address = @address.address
       @order.shipping_name = @address.name
+    # 新しいお届け先
     elsif params[:order][:select_address] == "2"
       @order = Order.new(order_params)
-      # binding.pry
     else
       render :new
     end
@@ -38,9 +40,7 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.new(order_params)
-    # binding.pry
     if @order.save
-
       cart_items = current_customer.cart_items.all
       # order_detailにcart_item情報保存
       cart_items.each do |cart_item|
@@ -49,7 +49,6 @@ class Public::OrdersController < ApplicationController
         @order_detail.order_id = @order.id
         @order_detail.amount = cart_item.amount
         @order_detail.purchase_prise = cart_item.item.with_tax_price.to_s(:delimited)
-        # binding.pry
         @order_detail.save
       end
       # cart_item情報を削除
@@ -57,11 +56,9 @@ class Public::OrdersController < ApplicationController
       # サンクス画面に遷移
       flash[:notice] = "order was successfully created."
       redirect_to orders_complete_path
-
     else
       flash[:notice] = "order was fallsed created."
       redirect_to orders_confirm_path
-
     end
   end
 
@@ -69,10 +66,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @order = current_customer.orders.all
+    @orders = current_customer.orders.all
   end
 
   def show
+    @order = current_customer.orders.find(params[:id])
+    @order_item_price = @order.amount_billed - @order.postage
   end
 
   private

@@ -3,26 +3,41 @@ public/topページ
   <div class="row">
     <div class="col-3 ml-5 mr-3 bg-secondary">ジャンル検索</div>
     <div class="col-8 bg-secondary">
-      <div class="row">
-        <p>
-          ようこそ、ながのCAKEへ！<br>
-          このサイトは、ケーキ販売のECサイトになります。<br>
-          会員でない方も商品の閲覧はできますが、<br>
-          購入には会員登録が必要になります。
-        </p>
+      <div class="jumbotron text-center top-image"　style=" background-image: url("/app/assets/images/mv.jpg");">
+        <!--<div class="row">-->
+          <p>
+            ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+          </p>
+        <!--</div>-->
       </div>
       <div class="row">
         <h3>新着商品</h3>
       </div>
       <div class="row">
-        <div class="col">image</div>
-        <div class="col">image</div>
-        <div class="col">image</div>
-        <div class="col">image</div>
+        <% @items.each do |item|%>
+          <div class="col">
+            <%= link_to item_path(item.id), class:"text-body" do %>
+              <div class="row">
+                <%= image_tag item.get_item_image(135,240), class: "d-block mx-auto" %>
+              </div>
+              <div class="row mt-2 ml-2">
+                <%= item.name %>
+              </div>
+              <div class="row mt-2 ml-2">
+                ¥<%= item.price.to_s(:delimited)%>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
       <div class="row">
-        <div class="col text-right"></div>
-        全ての商品を見る
+        <div class="col text-right mt-1 mb-3">
+          <%= link_to "全ての商品を見る >", items_path %>
+        </div>
+
       </div>
     </div>
   </div>

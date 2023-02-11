@@ -1,1 +1,49 @@
 public/order/index
+<div class="container-fluid">
+  <div class="row my-4">
+    <div class="offset-1">
+      <h5><span class="px-3 bg-secondary">注文履歴一覧</span></h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="col table">
+      <thead>
+        <tr>
+          <th style="width: 20%">注文日</th>
+          <th style="width: 30%">配送先</th>
+          <th style="width: 15%">注文商品</th>
+          <th style="width: 10%">支払金額</th>
+          <th style="width: 10%">ステータス</th>
+          <th style="width: 10%">注文詳細</th>
+        </tr>
+      </thead>
+      <% @orders.each do |order|%>
+      <tbody>
+        <tr>
+          <td><%= order.created_at.strftime('%Y/%-m/%-d') %></td>
+          <td>
+            〒<%= order.shipping_postal_code %><br>
+            <%= order.shipping_address %><br>
+            <%= order.shipping_name %>
+          </td>
+          <td>
+            <% order.order_details.each do |order_detail| %>
+              <%= order_detail.item.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= order.amount_billed.to_s(:delimited) %>円
+          </td>
+          <td>
+            <%= order.status_i18n %>
+          </td>
+          <td>
+            <%= link_to "表示する", order_path(order.id), class: "btn btn-sm btn-primary font-weight-bold px-3" %>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>
