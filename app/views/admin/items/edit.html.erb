@@ -37,9 +37,9 @@ admin/items/editページ
             <tr>
               <td><%= f.label :is_active, class: "mb-0" %></td>
               <td>
-                <%= f.radio_button :is_active, true %>
+                <%= f.radio_button :is_active, true, autofocus: true %>
                 <%= f.label :is_active, "販売中", value: true, class: "mr-3 mb-0 border-bottom" %>
-                <%= f.radio_button :is_active, false %>
+                <%= f.radio_button :is_active, false, autofocus: true %>
                 <%= f.label :is_active, "販売停止中", value: false, class: "mb-0 border-bottom" %>
               </td>
             </tr>

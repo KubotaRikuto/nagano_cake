@@ -36,7 +36,11 @@ admin/items/showページ
           <tr>
             <td>販売ステータス</td>
             <td>
-              <strong class="align-moddle text-success"><%= @item.is_active ? "販売中" : "販売停止中" %></strong>
+              <% if @item.is_active %>
+                <strong class="align-moddle text-success"><%= @item.is_active ? "販売中" : "販売停止中" %></strong>
+              <% else %>
+                <strong class="align-moddle text-secondary"><%= @item.is_active ? "販売中" : "販売停止中" %></strong>
+              <% end %>
             </td>
           </tr>
         </tbody>
