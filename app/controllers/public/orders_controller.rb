@@ -30,12 +30,12 @@ class Public::OrdersController < ApplicationController
     # カート内商品
     @cart_items = current_customer.cart_items.all
     # 合計金額(送料抜)
-    @item_total_amount = 0
-    @cart_items.each do |total_amount|
-      @item_total_amount += total_amount.subtotal
+    @order_item_total_price = 0
+    @cart_items.each do |cart_item|
+      @order_item_total_price += cart_item.subtotal
     end
     # 合計金額(送料込)
-    @order.amount_billed = @item_total_amount + @order.postage
+    @order.amount_billed = @order_item_total_price + @order.postage
   end
 
   def create
@@ -71,7 +71,8 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = current_customer.orders.find(params[:id])
-    @order_item_price = @order.amount_billed - @order.postage
+    @order_item_total_price = 0
+    @order_item_total_price = @order.amount_billed - @order.postage
   end
 
   private

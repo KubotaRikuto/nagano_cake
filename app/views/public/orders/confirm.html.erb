@@ -48,7 +48,7 @@ public/order/confirm
           <tr>
             <th>商品合計</th>
             <td>
-              <%= @item_total_amount.to_s(:delimited) %>
+              <%= @order_item_total_price.to_s(:delimited) %>
             </td>
           </tr>
           <tr>
@@ -88,7 +88,7 @@ public/order/confirm
     <%= f.hidden_field :shipping_postal_code %>
     <%= f.hidden_field :amount_billed %>
     <%= f.hidden_field :payment_method %>
-    
+
     <%= f.submit "注文を確定する"%>
   <% end %>
 </div>

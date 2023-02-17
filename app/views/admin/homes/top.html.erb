@@ -16,7 +16,9 @@ admin/topページ(注文履歴一覧 #index)
         <tbody>
           <tr>
             <td>
-              <%= order.created_at.strftime('%Y/%m/%d %T') %>
+              <%= link_to admin_order_path(order.id), class: "text-body" do %>
+                <%= order.created_at.strftime('%Y/%m/%d %T') %>
+              <% end %>
             </td>
             <td>
               <%= order.customer.last_name %><%= order.customer.first_name %>
