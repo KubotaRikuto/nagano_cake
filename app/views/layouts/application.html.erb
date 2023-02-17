@@ -15,98 +15,70 @@
   <body>
     <!-- ヘッダー -->
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light"> <!-- ここのtext-light はほかのページリンク作成したら消す-->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- ここのtext-light はほかのページリンク作成したら消す-->
         <div class="container-fluid">
-          <!--<div class="row">-->
-            <!--<div class="col-2">-->
-              <%= link_to root_path, class: "navbar-brand bg-success" do %>
-                <h1>LOGO</h1>
+          <%= link_to root_path, class: "navbar-brand" do %>
+            <h1 class="font-weight-lighter font-italic">nagano-cake</h1>
+          <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse navbar-expand-sm" id="navbarNavDropdown">
+            <div class="mr-lg-auto">
+              <p class="mb-0 text-light" id="notice">
+                <%= flash[:notice] %>
+              </p>
+            </div>
+            <ul class="nav navbar-nav w-60 nav-justified  ml-auto">
+              <!-- admin サインイン -->
+              <% if admin_signed_in? %>
+                <li class="ml-lg-auto" style="width: 20%">
+                  <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-light text-light d-block w-90 ml-auto" %>
+                </li>
+                <li class="" style="width: 20%">
+                  <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-light text-light d-block w-90 ml-auto" %>
+                </li>
+                <li class="" style="width: 20%">
+                  <%= link_to "注文一覧", admin_path, class: "btn btn-outline-light text-light d-block w-90 ml-auto" %>
+                </li>
+                <li class="" style="width: 20%">
+                  <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-light text-light d-block w-90 ml-auto" %>
+                </li>
+                <li class="" style="width: 20%">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light text-light d-block w-90 ml-auto" %>
+                </li>
+              <!-- customer サインイン -->
+              <% elsif customer_signed_in? %>
+                <li class="ml-lg-auto"  style="width: 20%">
+                  <%= link_to "マイページ", customers_my_page_path, class: 'btn btn-outline-light text-light d-block w--90 ml-auto' %>
+                </li>
+                <li style="width: 20%">
+                  <%= link_to "商品一覧", items_path, class: 'btn btn-outline-light text-light d-block w-90 ml-auto' %>
+                </li>
+                <li style="width: 20%">
+                  <%= link_to "カート", cart_items_path, class: 'btn btn-outline-light text-light d-block w-90 ml-auto' %>
+                </li>
+                <li style="width: 20%">
+                  <%= link_to "サインアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-light text-light d-block w-90 ml-auto' %>
+                </li>
+              <!-- 未ログイン -->
+              <% else %>
+                <li class="ml-lg-auto" style="width: 20%">
+                  <%= link_to "About", about_path, class: 'btn btn-outline-light text-light d-block w-80 ml-auto' %>
+                </li>
+                <li style="width: 20%">
+                  <%= link_to "商品一覧", items_path, class: 'btn btn-outline-light text-light d-block w-80 ml-auto' %>
+                </li>
+                <li style="width: 20%">
+                  <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-outline-light text-light d-block w-80 ml-auto' %>
+                </li>
+                <li style="width: 20%">
+                  <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-outline-light text-light d-block w-80 ml-auto' %>
+                </li>
               <% end %>
-            <!--</div>-->
-            <!--<div class="col-4">-->
-
-            <!--</div>-->
-
-            <!--<div class=" col-6">-->
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <div class="navbar mr-auto">
-                  フラッシュメッセージ欄
-                  <p id="notice"><%= flash[:notice] %></p>
-                </div>
-                <ul class="navbar-nav">
-                  <!-- admin サインイン -->
-                  <% if admin_signed_in? %>
-                    <li>
-                      <%= link_to admin_items_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light' do %>
-                        商品一覧
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to admin_customers_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light' do %>
-                        会員一覧
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to admin_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light' do %>
-                        注文一覧
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to admin_genres_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light' do%>
-                        ジャンル一覧
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to destroy_admin_session_path, method: :delete, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light' do %>
-                        ログアウト
-                      <% end %>
-                    </li>
-
-                  <!-- customer サインイン -->
-                  <% elsif customer_signed_in? %>
-                    <%= link_to customers_my_page_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
-                      マイページ
-                    <% end %>
-                    <%= link_to items_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
-                      商品一覧
-                    <% end %>
-                    <%= link_to cart_items_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
-                      カート
-                    <% end %>
-                    <%= link_to destroy_customer_session_path, method: :delete, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
-                      サインアウト
-                    <% end %>
-                  <!-- 未ログイン -->
-                  <% else %>
-                    <li>
-                      <%= link_to about_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
-                        About
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to items_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
-                        商品一覧
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to new_customer_registration_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
-                        新規登録
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to new_customer_session_path, class: 'navbar-link navbar-item btn btn-sm btn-outline-light text-light mr-1' do %>
-                        ログイン
-                      <% end %>
-                    </li>
-                  <% end %>
-                </ul>
-              </div>
-            <!--</div>-->
-          <!--</div>-->
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
