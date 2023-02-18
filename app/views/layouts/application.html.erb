@@ -25,9 +25,11 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse navbar-expand-sm" id="navbarNavDropdown">
-            <div class="mr-lg-auto">
-              <p class="mb-0 text-light" id="notice">
-                <%= flash[:notice] %>
+            <div class="mr-lg-auto ml-lg-5">
+              <p class="mb-0 text-light">
+                <%if customer_signed_in?  %>
+                ようこそ、<%= current_customer.last_name %>さん！
+                <% end %>
               </p>
             </div>
             <ul class="nav navbar-nav w-60 nav-justified  ml-auto">

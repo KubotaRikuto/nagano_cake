@@ -1,18 +1,17 @@
-public/cart_item/index
 <div class="container">
-  <div class="row mx-3 form-inline">
-    <div class="col-3">
-      <h5><span class="px-3 bg-secondary">ショッピングカート</span></h5>
+  <div class="row mt-4 mx-3 form-inline">
+    <div class="col-3 mb-2">
+      <h5><span class="px-3 bg-secondary text-light">ショッピングカート</span></h5>
     </div>
-    <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "col-2 ml-auto btn btn-sm btn-danger" %>
+    <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "col-2 ml-auto mb-4 btn btn-sm btn-danger font-weight-bold" %>
   </div>
 
 <% @cart_item_price_sum = 0 %>
 
   <div class="row">
     <div class="col-12 mx-3">
-      <table class="table table-sm border-top border-bottom borborder-secondary">
-        <thead>
+      <table class="table table-sm table-dark table-bordered ">
+        <thead class="table-secondary text-dark">
           <tr>
             <th style="width: 40%">商品名</th>
             <th style="width: 15%">単価(税込)</th>
@@ -22,24 +21,26 @@ public/cart_item/index
           </tr>
         </thead>
         <% @cart_items.each do |cart_item| %>
-          <tbody>
+          <tbody class="table-light text-dark">
             <tr>
               <td>
                 <%= image_tag cart_item.item.get_item_image(70,40) %>
                 <%= cart_item.item.name %>
               </td>
-              <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+              <td class="align-middle">
+                <%= cart_item.item.with_tax_price.to_s(:delimited) %>
+              </td>
               <td>
                 <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
                   <%= f.select :amount, *[1..10], autofocus: true, include_blank: "個数選択" %>
-                  <%= f.submit "変更", class: "btn btn-success" %>
+                  <%= f.submit "変更", class: "btn btn-success font-weight-bold" %>
                 <% end %>
               </td>
-              <td>
+              <td class="align-middle">
                 <%= cart_item.subtotal.to_s(:delimited) %>
               </td>
-              <td>
-                <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %>
+              <td class="text-center align-middle">
+                <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger px-3 font-weight-bold" %>
               </td>
             </tr>
           </tbody>
@@ -50,12 +51,14 @@ public/cart_item/index
   </div>
 
   <div class="row form-inline">
-    <%= link_to "買い物を続ける", root_path, class: "col-2 btn btn-sm btn-primary" %>
-    <table class="col-4 my-auto ml-auto table table-sm border-top border-bottom borborder-secondary">
-      <tbody>
+    <div class="offset-1 col-2">
+      <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
+    </div>
+    <table class="col-3 my-auto ml-auto table table-dark table-bordered">
+      <tbody class="table-light text-dark">
         <tr>
-          <th>合計金額</th>
-          <td>
+          <th class="table-secondary" style="width: 50%">合計金額</th>
+          <td style="width: 50%">
             <%= @cart_item_price_sum.to_s(:delimited) %>
           </td>
         </tr>
@@ -64,7 +67,7 @@ public/cart_item/index
   </div>
 
   <div class="row">
-    <%= link_to "情報入力に進む", new_order_path, class: "py-2 px-4 btn btn-sm btn-success font-weight-bold" %>
+    <%= link_to "情報入力に進む", new_order_path, class: "mx-auto py-2 px-4 btn btn-sm btn-success font-weight-bold" %>
   </div>
 
 </div>

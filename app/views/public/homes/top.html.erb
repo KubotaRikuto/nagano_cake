@@ -1,8 +1,6 @@
-public/topページ
 <div class="container-fulled">
-  <div class="row">
-    <div class="col-3 ml-5 mr-3 bg-secondary">ジャンル検索</div>
-    <div class="col-8 bg-secondary">
+  <div class="row mt-4">
+    <div class="col-8 mx-auto">
       <div class="jumbotron">
         <div class="row">
           <div class="col-8 mx-auto text-center top-bg">
@@ -15,14 +13,14 @@ public/topページ
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row ml-1">
         <h3>新着商品</h3>
       </div>
       <div class="row">
         <% @items.each do |item|%>
           <div class="col">
             <%= link_to item_path(item.id), class:"text-body" do %>
-              <div class="row">
+              <div class="row mx-1 bg-light">
                 <%= image_tag item.get_item_image(135,240), class: "d-block mx-auto" %>
               </div>
               <div class="row mt-2 ml-2">
