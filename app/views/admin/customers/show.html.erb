@@ -1,9 +1,7 @@
-admin/customer/showページ
+<!--admin/customer/showページ-->
 <div class="container">
   <div class="row mt-5">
-    <!--<div class="">-->
-      <h5><span class="px-3 bg-secondary"><%= @customer_name %>さんの会員詳細</span></h5>
-    <!--</div>-->
+    <h5><span class="px-3 bg-secondary text-light"><%= @customer_name %>さんの会員詳細</span></h5>
   </div>
   <div class="mt-5 form-group row">
     <div class="col-2">
@@ -73,7 +71,11 @@ admin/customer/showページ
       会員ステータス
     </div>
     <div class="col">
-      <%= @customer.is_deleted ? "退会" : "有効" %>
+      <% if @customer.is_deleted %>
+        <strong class="text-secondary font-weight-bold"><%= @customer.is_deleted ? "退会" : "有効" %></strong>
+      <% else %>
+        <strong class="text-success font-weight-bold"><%= @customer.is_deleted ? "退会" : "有効" %></strong>
+      <% end %>
     </div>
   </div>
   <div class="form-group row">

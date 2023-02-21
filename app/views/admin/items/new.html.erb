@@ -1,13 +1,12 @@
-admin/items/newページ
 <div class="container">
   <!-- 商品新規登録フォーム-->
   <div class="row">
-    <div class="offset-2">
+    <div class="offset-2 px-3 bg-secondary text-light">
       <h5>商品新規登録</h5>
     </div>
   </div>
   <div class="row mt-3">
-    <div class="offset-2 col-8">
+    <div class="offset-3 col-8">
 
 
       <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
@@ -23,11 +22,11 @@ admin/items/newページ
                 </tr>
                 <tr>
                   <td><%= f.label :name,class: "mb-0" %></td>
-                  <td><%= f.text_field :name, autofocus: true, placeholder: "商品名", class: "form-control" %></td>
+                  <td><%= f.text_field :name, autofocus: true, placeholder: "商品名", class: "form-control border border-dark" %></td>
                 </tr>
                 <tr>
                   <td class="align-top"><%= f.label :introduction, class: "mb-0" %></td>
-                  <td><%= f.text_area :introduction, autofocus: true, placeholder: "ここに説明文を記述します", class: "form-control" %></td>
+                  <td><%= f.text_area :introduction, autofocus: true, placeholder: "ここに説明文を記述します", class: "form-control border border-dark" %></td>
                 </tr>
                 <tr>
                   <td>ジャンル</td>
@@ -35,7 +34,7 @@ admin/items/newページ
                 </tr>
                 <tr>
                   <td><%= f.label :price, class: "mb-0" %></td>
-                  <td class="form-inline"><%= f.text_field :price, autofocus: true, placeholder: "1000", class: "form-control" %>円</td>
+                  <td class="form-inline"><%= f.text_field :price, autofocus: true, placeholder: "1000", class: "form-control border border-dark" %>　<span>　円</span></td>
                 </tr>
                 <tr>
                   <td><%= f.label :is_active, class: "mb-0" %></td>

@@ -1,8 +1,8 @@
-admin/orders/showページ
+<!--admin/orders/showページ-->
 <div class="container-fluid">
   <div class="row mt-3">
     <div class="offset-1">
-      <h5><span class="px-3 bg-secondary">注文履歴詳細</span></h5>
+      <h5><span class="px-3 bg-secondary text-light">注文履歴詳細</span></h5>
     </div>
   </div>
   <div class="row ml-5">
@@ -38,54 +38,53 @@ admin/orders/showページ
       <%= @order.payment_method_i18n %>
     </div>
   </div>
-  <div class="row ml-5">
+  <div class="row ml-5 d-flex align-items-center">
     <div class="col-2">
       <strong>注文ステータス</strong>
     </div>
-    <div class="col-2">
-      <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
-        <%= f.select :status, Order.statuses.keys.map{ |k| [I18n.t("enums.order.status.#{k}"), k] } %>
-        <%= f.submit "更新", class: "btn btn-successfully"%>
-      <% end %>
-    </div>
+    <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch , class: "col d-flex align-items-center" do |f| %>
+      <%= f.select :status, Order.statuses.keys.map{ |k| [I18n.t("enums.order.status.#{k}"), k] } %>
+      <%= f.submit "更新", class: "px-1 btn btn-sm btn-success ml-5" %>
+    <% end %>
   </div>
-  <div class="row">
-    <table class="col table">
-      <thead>
+  <div class="row mt-4 ml-5">
+    <table class="col-7 table table-sm table-dark table-borderless border-top border-bottom border-secondary">
+      <thead class="table-secondary text-dark">
         <tr>
           <th style="width: 20%">商品名</th>
           <th style="width: 20%">単価(税込)</th>
           <th style="width: 20%">数量</th>
           <th style="width: 20%">小計</th>
-          <th style="width: 20%">制作</th>
+          <th style="width: 20%">制作ステータス</th>
         </tr>
       </thead>
       <% @order.order_details.each do |order_detail| %>
-      <tbody>
+      <tbody class="table-light text-dark">
         <tr>
-          <td>
+          <td class="align-middle">
             <%= order_detail.item.name %>
           </td>
-          <td>
-            <%= order_detail.item.with_tax_price %>
+          <td class="align-middle">
+            <%= order_detail.item.with_tax_price.to_s(:delimited) %>
           </td>
-          <td>
+          <td class="align-middle">
             <%= order_detail.amount %>
           </td>
-          <td>
-            <%= order_detail.subtotal %>
+          <td class="align-middle">
+            <%= order_detail.subtotal.to_s(:delimited) %>
           </td>
           <td>
-            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch , class: "d-flex align-items-center justify-content-around" do |f| %>
               <%= f.select :making_status, OrderDetail.making_statuses.keys.map { |k| [I18n.t("enums.order_detail.making_status.#{k}"), k] } %>
-              <%= f.submit "更新", class: "btn btn-successfully" %>
+              <%= f.submit "更新", class: "btn btn-sm btn-success px-1" %>
             <% end %>
           </td>
         </tr>
       </tbody>
       <% end %>
     </table>
-    <table class="col table">
+    <div class="ml-5 mr-5 col-2 align-self-end">
+    <table class="table-sm">
       <tbody>
         <tr>
           <th>商品合計</th>
@@ -107,6 +106,7 @@ admin/orders/showページ
         </tr>
       </tbody>
     </table>
+    </div>
   </div>
 
 </div>

@@ -1,13 +1,13 @@
-admin/customer/indexページ
+<!--admin/customer/indexページ-->
 <div class="container">
   <div class="row mt-5">
     <div class="offset-1">
-      <h5><span class="px-3 bg-secondary">会員一覧</span></h5>
+      <h5 class="ml-4"><span class="px-3 bg-secondary text-light">会員一覧</span></h5>
     </div>
   </div>
   <div class="row mt-2">
     <div class="offset-2 col-8">
-      <table class="table table-sm table-borderless border-top border-bottom borborder-secondary">
+      <table class="table table-sm  border-bottom">
         <thead class="table-secondary ">
           <tr>
             <th style="width: 10%">会員ID</th>
@@ -17,7 +17,7 @@ admin/customer/indexページ
           </tr>
         </thead>
         <% @customers.each do |customers| %>
-          <tbody>
+          <tbody class="">
             <tr>
               <td><%= customers.id %></td>
               <td>
@@ -26,7 +26,13 @@ admin/customer/indexページ
                 <% end %>
               </td>
               <td><%= customers.email %></td>
-              <td><%= customers.is_deleted ? "退会" : "有効" %></td>
+              <td>
+                <% if customers.is_deleted %>
+                  <strong class="text-secondary font-weight-bold"><%= customers.is_deleted ? "退会" : "有効" %></strong>
+                <% else %>
+                  <strong class="text-success font-weight-bold"><%= customers.is_deleted ? "退会" : "有効" %></strong>
+                <% end %>
+              </td>
             </tr>
           </tbody>
         <% end %>

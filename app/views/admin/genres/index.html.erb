@@ -1,7 +1,7 @@
-admin/genres/indexページ
+<!--admin/genres/indexページ-->
 <div class="container-fluid">
-  <div class="row ml-3">
-    <div class="ml-5"><h5 class="px-4 table-secondary">ジャンル一覧・追加</h5></div>
+  <div class="row mt-4 ml-3">
+    <div class="ml-5"><h5 class="px-3 bg-secondary text-light">ジャンル一覧・追加</h5></div>
   </div>
 
 
@@ -11,38 +11,36 @@ admin/genres/indexページ
       <div class="col-1 pl-0">
         <label>ジャンル名</label>
       </div>
-      <!--<div class="col-2">-->
-        <%= f.text_field :name, autofocus: true, :placeholder => "ジャンル名", class: "p-0 col-2 border border-dark" %>
-      <!--</div>-->
-      <!--<div class="col-1">-->
-        <%= f.submit  "新規登録", class: "col-1 ml-5 px-4 btn btn-success"%>
-      <!--</div>-->
+      <%= f.text_field :name, autofocus: true, :placeholder => "ジャンル名", class: "p-0 col-2 border border-dark" %>
+      <%= f.submit  "新規登録", class: "col-1 ml-5 px-4 btn btn-success font-weight-bold"%>
     </div>
   <% end %>
 
   <!-- ジャンル一覧 -->
   <div class="row mt-4 ml-3">
     <div class="col-3 px-0">
-      <!--<div class="col-3 px-0">-->
-        <table class="table table-sm border-top border-bottom borborder-secondary">
-          <thead class="table-secondary">
-            <th style="width: 50%" class="text-center">ジャンル</th>
+      <table class="table table-sm border-top border-bottom ">
+        <thead class="table-secondary">
+          <tr>
+            <th  class="text-center" style="width: 50%">ジャンル</th>
             <th style="width: 50%"></th>
-          </thead>
-          <% @genres.each do |genres| %>
-            <tbody>
-              <th>
+          </tr>
+        </thead>
+        <% @genres.each do |genres| %>
+          <tbody>
+            <tr>
+              <td>
                 <%= genres.name %>
-              </th>
-              <th class="text-center">
+              </td>
+              <td class="text-center">
                 <%= link_to edit_admin_genre_path(genres.id), class: "btn btn-sm btn-success" do %>
                   編集する
                 <% end %>
-              </th>
-            </tbody>
-          <% end %>
-        </table>
-      <!--</div>-->
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>

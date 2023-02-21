@@ -1,7 +1,7 @@
-admin/genres/editページ
+<!--admin/genres/editページ-->
 <div class="container">
   <div class="row mt-5">
-    <div class="offset-1 col-2 text-center bg-secondary ">
+    <div class="offset-1 col-2 text-center bg-secondary text-light">
       <h5 class="mb-0">ジャンル編集</h5>
     </div>
   </div>
@@ -10,7 +10,7 @@ admin/genres/editページ
       <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch, class:"form-group" do |f| %>
         <div class="mx-5 my-auto"><p class="mb-0">ジャンル名</p></div>
         <%= f.text_field :name, autofocus: true, placeholder: "ジャンル名", class:"border border-dark mr-5" %>
-        <%= f.submit "変更を保存", class: "btn btn-sm rounded-3 py-1 px-3 btn-success" %>
+        <%= f.submit "変更を保存", class: "btn btn-sm rounded-3 py-1 px-3 btn-success font-weight-bold" %>
       <% end %>
     </div>
   </div>
