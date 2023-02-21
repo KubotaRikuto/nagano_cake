@@ -1,8 +1,7 @@
-public/orders/new
 <div class="container-fluid">
   <div class="row mt-5 mb-2">
     <div class="offset-2">
-      <h5><span class="px-3 bg-secondary">注文情報入力</span></h5>
+      <h5><span class="px-3 bg-secondary text-light">注文情報入力</span></h5>
     </div>
   </div>
 
@@ -40,7 +39,7 @@ public/orders/new
       </div>
     </div>
     <div class="row ml-4">
-      <div class="offset-1 col pl-4">
+      <div class="offset-1 col-8 pl-4">
         <p class="ml-5 pl-2">
           〒<%= current_customer.postal_code %> <%= current_customer.address %><br>
           <%= current_customer.last_name %><%= current_customer.first_name %>
@@ -54,41 +53,33 @@ public/orders/new
         <%= f.label :select_address_1, "登録済住所から選択", class: "mb-0" %>
       </div>
     </div>
-    <div class="row ml-5">
-      <div class="offset-1 col pl-5">
-        <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
-      </div>
+    <div class="row">
+      <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display),{}, {class: "offset-2 col-7 pl-1 border border-dark rounded"} %>
     </div>
     <!-- 新しいお届け先 -->
-    <div class="row ml-1">
+    <div class="row mt-3 ml-1">
       <div class="offset-1 col pl-4">
         <%= f.radio_button :select_address, "2", class: "ml-5" %>
         <%= f.label :select_address_2, "新しいお届け先" %>
       </div>
     </div>
-    <div class="row ml-1">
-      <div class="offset-1 col-2 pl-4">
-        <p>郵便番号(ハイフンなし)</p>
+    <div class="row mt-2 form-inline">
+      <div class="offset-2 col-2 pl-0">
+        <p class="mb-0">郵便番号(ハイフンなし)</p>
       </div>
-      <div class="col">
-        <%= f.text_field :shipping_postal_code, placeholder: "0000000"%>
-      </div>
+      <%= f.text_field :shipping_postal_code, placeholder: "0000000", class: "col-2 border border-dark rounded" %>
     </div>
-    <div class="row ml-1">
-      <div class="offset-1 col-2 pl-4">
-        <p>住所</p>
+    <div class="row mt-2 form-inline">
+      <div class="offset-2 col-2 pl-0">
+        <p class="mb-0">住所</p>
       </div>
-      <div class="col-4">
-        <%= f.text_field :shipping_address, placeholder: "東京都渋谷区代々木新園町0-0"%>
-      </div>
+      <%= f.text_field :shipping_address, placeholder: "東京都渋谷区代々木新園町0-0", class: "col-4 border border-dark rounded" %>
     </div>
-    <div class="row ml-1">
-      <div class="offset-1 col-2 pl-4">
-        <p>宛名</p>
+    <div class="row mt-2 form-group form-inline">
+      <div class="offset-2 col-2 pl-0">
+        <p class="mb-0">宛名</p>
       </div>
-      <div class="col">
-        <%= f.text_field :shipping_name, placeholder: "令和道子"%>
-      </div>
+      <%= f.text_field :shipping_name, placeholder: "令和道子", class: "col-2 border border-dark rounded" %>
     </div>
 
     <div class="row">

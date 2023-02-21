@@ -1,44 +1,43 @@
-public/order/index
 <div class="container-fluid">
   <div class="row my-4">
-    <div class="offset-1">
-      <h5><span class="px-3 bg-secondary">注文履歴一覧</span></h5>
+    <div class="offset-2">
+      <h5><span class="px-3 bg-secondary text-light">注文履歴一覧</span></h5>
     </div>
   </div>
 
-  <div class="row">
-    <table class="col table">
-      <thead>
+  <div class="row justify-content-center">
+    <table class="col-10 table table-dark table-bordered">
+      <thead class="table-secondary text-dark">
         <tr>
-          <th style="width: 20%">注文日</th>
-          <th style="width: 30%">配送先</th>
-          <th style="width: 15%">注文商品</th>
-          <th style="width: 10%">支払金額</th>
-          <th style="width: 10%">ステータス</th>
-          <th style="width: 10%">注文詳細</th>
+          <th class="align-middle" style="width: 20%">注文日</th>
+          <th class="align-middle" style="width: 30%">配送先</th>
+          <th class="align-middle" style="width: 15%">注文商品</th>
+          <th class="align-middle" style="width: 10%">支払金額</th>
+          <th class="align-middle" style="width: 10%">ステータス</th>
+          <th class="align-middle" style="width: 10%">注文詳細</th>
         </tr>
       </thead>
       <% @orders.each do |order|%>
-      <tbody>
+      <tbody class="table-light text-dark">
         <tr>
-          <td><%= order.created_at.strftime('%Y/%-m/%-d') %></td>
-          <td>
+          <td class="align-middle"><%= order.created_at.strftime('%Y/%-m/%-d') %></td>
+          <td class="align-middle">
             〒<%= order.shipping_postal_code %><br>
             <%= order.shipping_address %><br>
             <%= order.shipping_name %>
           </td>
-          <td>
+          <td class="align-middle">
             <% order.order_details.each do |order_detail| %>
               <%= order_detail.item.name %>
             <% end %>
           </td>
-          <td>
+          <td class="align-middle">
             <%= order.amount_billed.to_s(:delimited) %>円
           </td>
-          <td>
+          <td class="align-middle">
             <%= order.status_i18n %>
           </td>
-          <td>
+          <td class="align-middle text-center">
             <%= link_to "表示する", order_path(order.id), class: "btn btn-sm btn-primary font-weight-bold px-3" %>
           </td>
         </tr>

@@ -1,7 +1,7 @@
 public/addresses/edit
 <div class="container-fluid">
   <div class="row mt-5">
-    <div class="offset-1 col-1 text-center bg-secondary ">
+    <div class="offset-1 col-1 text-center bg-secondary text-light">
       <h5 class="mb-0">配送先編集</h5>
     </div>
   </div>
@@ -9,16 +9,16 @@ public/addresses/edit
   <%= form_with model: @address, url: address_path(@address.id), method: :patch, class:"mt-4" do |f| %>
   <div class="row form-group">
     <div class="col-2 mx-5 my-auto"><p class="mb-0">郵便番号(ハイフンなし)</p></div>
-    <%= f.text_field :postal_code, autofocus: true, placeholder: "0000000", class:"col-2 border border-dark mr-5" %>
+    <%= f.text_field :postal_code, autofocus: true, placeholder: "0000000", class:"col-2 border border-dark mr-5 form-control border border-dark" %>
   </div>
   <div class="row form-group">
     <div class="col-2 mx-5 my-auto"><p class="mb-0">住所</p></div>
-    <%= f.text_field :address, autofocus: true, placeholder: "東京都渋谷区代々木新園町0-0", class:"col-4 border border-dark mr-5" %>
+    <%= f.text_field :address, autofocus: true, placeholder: "東京都渋谷区代々木新園町0-0", class:"col-4 border border-dark mr-5 form-control border border-dark" %>
   </div>
   <div class="row form-group">
     <div class="col-2 mx-5 my-auto"><p class="mb-0">宛名</p></div>
-    <%= f.text_field :name, autofocus: true, placeholder: "令和道子", class:"col-2 border border-dark mr-5" %>
-    <%= f.submit "変更内容を保存", class: "offset-2 col-1 btn btn-sm rounded-3 py-1 px-3 btn-success" %>
+    <%= f.text_field :name, autofocus: true, placeholder: "令和道子", class:"col-2 border border-dark mr-5 form-control border border-dark" %>
+    <%= f.submit "変更内容を保存", class: "offset-2 col-1 btn btn-sm rounded-3 py-0 px-3 btn-success font-weight-bold" %>
   </div>
 
 

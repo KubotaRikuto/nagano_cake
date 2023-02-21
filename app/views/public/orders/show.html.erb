@@ -1,42 +1,41 @@
-public/order/show
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid ml-4">
+  <div class="row mt-4">
     <div class="offset-1">
-      <h5><span class="px-3 bg-secondary">注文履歴詳細</span></h5>
+      <h5><span class="px-3 bg-secondary text-light">注文履歴詳細</span></h5>
     </div>
   </div>
   <div class="row">
     <!-- 注文情報 -->
-    <div class="col">
+    <div class="col-6">
       <div class="row">
         <p><strong>注文情報</strong></p>
       </div>
       <div class="row">
-        <table class="table">
-          <tbody>
+        <table class="col-11 table table-dark table-bordered">
+          <tbody class="table-secondary text-dark">
             <tr>
-              <th>注文日</th>
-              <td>
+              <th class="align-middle">注文日</th>
+              <td class="align-middle table-light">
                 <%= @order.created_at.strftime('%Y/%m/%d') %>
               </td>
             </tr>
             <tr>
-              <th>配送先</th>
-              <td>
+              <th class="align-middle">配送先</th>
+              <td class="align-middle table-light">
                 〒<%= @order.shipping_postal_code %><br>
                 <%= @order.shipping_address %><br>
                 <%= @order.shipping_name %>
               </td>
             </tr>
             <tr>
-              <th>支払方法</th>
-              <td>
+              <th class="align-middle">支払方法</th>
+              <td class="align-middle table-light">
                 <%= @order.payment_method_i18n %>
               </td>
             </tr>
             <tr>
-              <th>ステータス</th>
-              <td>
+              <th class="align-middle">ステータス</th>
+              <td class="align-middle table-light">
                 <%= @order.status_i18n %>
               </td>
             </tr>
@@ -45,28 +44,28 @@ public/order/show
       </div>
     </div>
     <!-- 請求情報 -->
-    <div class="col">
+    <div class="col-4">
       <div class="row">
-        <p><strong>注文情報</strong></p>
+        <p><strong>請求情報</strong></p>
       </div>
       <div class="row">
-        <table class="table">
-          <tbody>
+        <table class="col-6 table table-dark table-bordered">
+          <tbody class="table-secondary text-dark">
             <tr>
-              <th>商品合計</th>
-              <td>
+              <th class="align-middle">商品合計</th>
+              <td class="align-middle table-light">
                 <%= @order_item_total_price.to_s(:delimited) %>
               </td>
             </tr>
             <tr>
-              <th>配送料</th>
-              <td>
+              <th class="align-middle">配送料</th>
+              <td class="align-middle table-light">
                 <%= @order.postage.to_s(:delimited) %>
               </td>
             </tr>
             <tr>
-              <th><strong>ご請求額</strong></th>
-              <td>
+              <th class="align-middle"><strong>ご請求額</strong></th>
+              <td class="align-middle table-light">
                 <%= @order.amount_billed.to_s(:delimited) %>
               </td>
             </tr>
@@ -79,28 +78,28 @@ public/order/show
     <p><strong>注文内容</strong></p>
   </div>
   <div class="row">
-    <table class="table">
-      <thead>
+    <table class="col-7 table table-dark table-bordered">
+      <thead class="table-secondary text-dark">
         <tr>
-          <th>商品</th>
-          <th>単価(税込)</th>
-          <th>個数</th>
-          <th>小計</th>
+          <th class="align-middle">商品</th>
+          <th class="align-middle">単価(税込)</th>
+          <th class="align-middle">個数</th>
+          <th class="align-middle">小計</th>
         </tr>
       </thead>
       <% @order.order_details.each do |order_detail| %>
-      <tbody>
+      <tbody class="table-light text-dark">
         <tr>
-          <td>
+          <td class="align-middle">
             <%= order_detail.item.name %>
           </td>
-          <td>
+          <td class="align-middle">
             <%= order_detail.item.with_tax_price %>
           </td>
-          <td>
+          <td class="align-middle">
             <%= order_detail.amount %>
           </td>
-          <td>
+          <td class="align-middle">
             <%= order_detail.subtotal %>
           </td>
         </tr>
