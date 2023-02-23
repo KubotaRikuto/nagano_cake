@@ -3,7 +3,7 @@
     <div class="col-9 mx-auto">
       <div class="row">
         <div class="col-3 ml-2">
-          <h2>商品一覧 <small style="font-size: 18px;">(全<%= @items.count %>件)</small></h2>
+          <h2>商品一覧 <small style="font-size: 18px;">(全<%= @item_count.count %>件)</small></h2>
         </div>
       </div>
       <div class="row mt-3">
@@ -25,7 +25,9 @@
           </div>
         <% end %>
       </div>
-      <%= paginate @items %>
+      <div class="mt-5">
+      <%= paginate @items, class: "ml-5" %>
+      </div>
     </div>
   </div>
 </div>
