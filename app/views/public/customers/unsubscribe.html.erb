@@ -12,6 +12,6 @@
   </div>
   <div class="row justify-content-center">
     <%= link_to "退会しない", customers_my_page_path, class: "col-2 py-2 mx-3 btn btn-sm btn-primary"%>
-    <%= link_to "退会する", customers_withdrawl_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "col-2 py-2 mx-3 btn btn-sm btn-danger"%>
+    <%= link_to "退会する", customers_withdrawl_path, method: :patch, data: { confirm: "本当に退会しますか？", cancel: "やめる", commit: "退会する"} , class: "col-2 py-2 mx-3 btn btn-sm btn-danger"%>
   </div>
 </div>
